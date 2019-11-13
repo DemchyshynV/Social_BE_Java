@@ -19,7 +19,7 @@ public class Rest {
     public void register(@RequestBody User candidate) {
         System.out.println(candidate);
         if (userService.findByEmail(candidate.getEmail()) != null) {
-            System.out.println("Error");
+            System.out.println("Errore");
         }
         userService.register(candidate);
     }

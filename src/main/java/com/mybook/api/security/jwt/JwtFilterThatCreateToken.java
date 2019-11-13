@@ -57,7 +57,6 @@ public class JwtFilterThatCreateToken extends AbstractAuthenticationProcessingFi
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-        response.setStatus(502);
-        response.sendError(111, "error");
+        response.setStatus(401);
     }
 }
