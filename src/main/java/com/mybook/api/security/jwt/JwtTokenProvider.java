@@ -69,7 +69,7 @@ public class JwtTokenProvider {
     }
 
     public String getEmail(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJwt(token).getBody().getSubject();
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
     }
 
     public String resolveToken(HttpServletRequest req) {
@@ -82,13 +82,14 @@ public class JwtTokenProvider {
 
     public boolean validateToken(String token){
         try {
-            Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJwt(token).getBody();
+            Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
             if (claims.getExpiration().before(new Date())) {
                 return false;
             }
             return true;
         }catch (JwtException | IllegalArgumentException e){
-            throw new JwtAuthenticationExeption("JWT Token is expired or invalid");
+//            throw new JwtAuthenticationExeption("JWT Token is expired or invalid");
+            return false;
         }
     }
 
