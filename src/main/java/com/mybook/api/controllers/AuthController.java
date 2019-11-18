@@ -17,7 +17,6 @@ public class AuthController {
 
     @PostMapping("/api/auth/register")
     public ResponseEntity register(@RequestBody User candidate) {
-//        System.out.println(candidate);
         HttpHeaders httpHeaders = new HttpHeaders();
         if (userService.findByEmail(candidate.getEmail()) != null) {
             httpHeaders.add("email", "false");

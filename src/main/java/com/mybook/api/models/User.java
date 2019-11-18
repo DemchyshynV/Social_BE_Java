@@ -16,6 +16,8 @@ public class User extends BaseEntity {
     private int age;
     @Enumerated(EnumType.STRING)
     private Sex sex;
+    @OneToOne
+    private Avatar avatar;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),

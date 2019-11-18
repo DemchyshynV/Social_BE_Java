@@ -18,6 +18,7 @@ public class UserController {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User userByEmail = userRepository.findUserByEmail(email);
         SiteLayoutDTO profile = SiteLayoutDTO.builder()
+                .avatar(userByEmail.getAvatar().getAvatar())
                 .name(userByEmail.getName())
                 .surname(userByEmail.getSurname())
                 .build();
