@@ -11,6 +11,6 @@ public class SiteLayoutDTO {
     private String surname;
     private boolean massage;
     private boolean friends;
-    private boolean isAdmin;
+    private boolean admin;
 
 }

@@ -13,9 +13,9 @@ public class JwtUser implements UserDetails {
     private final long id;
     private final String email;
     private final String password;
-    private final String name;
-    private final String surname;
-    private final int age;
+//    private final String name;
+//    private final String surname;
+//    private final int age;
     private final Status status;
     private final boolean enabled;
     private final Date lastPasswordResetDate;

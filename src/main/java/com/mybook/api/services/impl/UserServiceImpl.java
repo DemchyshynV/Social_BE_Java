@@ -8,10 +8,12 @@ import com.mybook.api.repositories.UserRepository;
 import com.mybook.api.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -38,6 +40,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getCurrentUser() {
+            String email = SecurityContextHolder.getContext().getAuthentication().getName();
+            return findByEmail(email);
+    }
+
+    @Override
     public List<User> getAll() {
         List<User> result = userRepository.findAll();
         return result;
@@ -55,6 +63,12 @@ public class UserServiceImpl implements UserService {
         if (result == null)
             return null;
         return result;
+    }
+
+    @Override
+    public void updateUser(User user) {
+        user.setUpdated(new Date());
+        userRepository.save(user);
     }
 
     @Override
