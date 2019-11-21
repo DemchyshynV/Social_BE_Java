@@ -38,7 +38,7 @@ public class SiteLayoutController {
                 .name(currentUser.getProfile().getName())
                 .surname(currentUser.getProfile().getSurname())
                 .admin(isAdmin)
-                .massage(false)
+                .massages(true)
                 .friends(true)
                 .build();
         if (currentUser.getProfile().getAvatar() != null)
@@ -69,7 +69,7 @@ public class SiteLayoutController {
         User currentUser = userService.getCurrentUser();
         currentUser.getProfile().setAvatar(pathFile.getAbsolutePath());
         currentUser.getProfile().setUpdated(new Date());
-        userService.updateUser(currentUser);
+        userService.save(currentUser);
 
     }
 
@@ -82,4 +82,5 @@ public class SiteLayoutController {
                 .contentType(MediaType.IMAGE_JPEG)
                 .body(resource);
     }
+
 }

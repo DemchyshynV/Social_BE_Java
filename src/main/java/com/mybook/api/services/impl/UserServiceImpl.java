@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void save(User user) {
         user.setUpdated(new Date());
         userRepository.save(user);
     }

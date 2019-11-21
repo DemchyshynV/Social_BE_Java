@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,4 +18,11 @@ public class Profile extends BaseEntity {
     @ToString.Exclude
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profile")
     private User user;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "friends",
+            joinColumns = @JoinColumn(name = "profile"),
+            inverseJoinColumns = @JoinColumn(name = "friend")
+    )
+    private List<Profile> friends;
 }

@@ -5,11 +5,9 @@ import lombok.Data;
 
 @Data
 @Builder
-public class SiteLayoutDTO {
+public class FriendsDTO {
+    private long id;
     private String avatar;
     private String name;
     private String surname;
-    private boolean admin;
-    private boolean massages;
-    private boolean friends;
 }
