@@ -7,7 +7,8 @@ import com.mybook.api.models.User;
 import java.util.List;
 
 public interface FriendService {
-    List<FriendsDTO> getFriends();
+    List<FriendsDTO> myFriends();
     List<FriendsDTO> findFriends();
     void saveFriend(long id);
+    void del(long id);
 }

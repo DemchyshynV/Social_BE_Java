@@ -5,14 +5,12 @@ import com.mybook.api.models.User;
 import com.mybook.api.services.impl.FriendServiceImpl;
 import com.mybook.api.services.impl.UserServiceImpl;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.util.List;
@@ -24,9 +22,10 @@ public class FriendsController {
     private UserServiceImpl userService;
 
     @GetMapping("/api/friends/find")
-    public List<FriendsDTO> findAll() {
+    public List<FriendsDTO> find() {
         return friendService.findFriends();
     }
+
     @GetMapping("/api/friends/avatar/{id}")
     public ResponseEntity<Resource> getAvatar(@PathVariable long id) {
         String filePath = userService.findById(id).getProfile().getAvatar();
@@ -35,5 +34,21 @@ public class FriendsController {
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_JPEG)
                 .body(resource);
+    }
+
+    @PostMapping("/api/friends/save")
+    public ResponseEntity<Boolean> save(@RequestBody long id) {
+        friendService.saveFriend(id);
+        return ResponseEntity.ok(true);
+    }
+    @GetMapping("/api/friends/myFriends")
+    public List<FriendsDTO> myFriends(){
+        return friendService.myFriends();
+
+    }
+    @PostMapping("/api/friends/del")
+    public ResponseEntity<Boolean> del(@RequestBody long id){
+        friendService.del(id);
+        return ResponseEntity.ok(true);
     }
 }

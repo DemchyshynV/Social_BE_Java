@@ -7,6 +7,6 @@ import javax.persistence.Entity;
 @Entity
 @Data
 public class Friends extends BaseEntity{
-    private boolean success;
-
+    private long friend;
+    private long profile;
 }

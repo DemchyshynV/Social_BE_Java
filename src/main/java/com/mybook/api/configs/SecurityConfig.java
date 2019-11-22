@@ -27,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/auth/login", "api/auth/register").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .apply(new JwtConfigurer(jwtTokenProvider, authenticationManager(), userService));
     }
