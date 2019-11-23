@@ -15,9 +15,9 @@ public class Profile extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Sex sex;
     private String avatar;
-    @ToString.Exclude
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profile")
     private User user;
+    @ToString.Exclude
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "friends",

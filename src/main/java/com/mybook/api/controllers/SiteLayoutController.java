@@ -51,6 +51,8 @@ public class SiteLayoutController {
         File path = new File(
                 System.getProperty("user.home")
                         + File.separator
+                        +"MyBook"
+                        +File.separator
                         + userService.getCurrentUser().getEmail()
                         + File.separator
                         + "avatar"

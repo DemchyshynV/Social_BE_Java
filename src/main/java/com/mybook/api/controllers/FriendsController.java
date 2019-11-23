@@ -21,34 +21,43 @@ public class FriendsController {
     private FriendServiceImpl friendService;
     private UserServiceImpl userService;
 
-    @GetMapping("/api/friends/find")
-    public List<FriendsDTO> find() {
+    @GetMapping("/api/friends/findFriends")
+    public List<FriendsDTO> findFriends() {
         return friendService.findFriends();
+    }
+
+    @GetMapping("/api/friends/myRequests")
+    public List<FriendsDTO> myRequests() {
+        return friendService.myRequests();
     }
 
     @GetMapping("/api/friends/avatar/{id}")
     public ResponseEntity<Resource> getAvatar(@PathVariable long id) {
-        String filePath = userService.findById(id).getProfile().getAvatar();
-        File file = new File(filePath);
-        Resource resource = new FileSystemResource(file);
+
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_JPEG)
-                .body(resource);
+                .body(friendService.getAvatar(id));
     }
 
     @PostMapping("/api/friends/save")
     public ResponseEntity<Boolean> save(@RequestBody long id) {
-        friendService.saveFriend(id);
+        friendService.save(id);
         return ResponseEntity.ok(true);
     }
+
     @GetMapping("/api/friends/myFriends")
-    public List<FriendsDTO> myFriends(){
+    public List<FriendsDTO> myFriends() {
         return friendService.myFriends();
 
     }
-    @PostMapping("/api/friends/del")
-    public ResponseEntity<Boolean> del(@RequestBody long id){
+
+    @DeleteMapping("/api/friends/del/{id}")
+    public ResponseEntity<Boolean> del(@PathVariable long id) {
         friendService.del(id);
         return ResponseEntity.ok(true);
+    }
+    @GetMapping("/api/friends/friendsRequest")
+    public List<FriendsDTO> friendsRequest(){
+        return friendService.friendsRequest();
     }
 }
