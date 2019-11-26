@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-@Slf4j
+//@Slf4j
 @AllArgsConstructor
 public class JwtUserDetailsService implements UserDetailsService {
     private UserService userService;

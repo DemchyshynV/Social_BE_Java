@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-@Slf4j
+//@Slf4j
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;

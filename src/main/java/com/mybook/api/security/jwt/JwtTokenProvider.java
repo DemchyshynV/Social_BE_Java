@@ -81,16 +81,15 @@ public class JwtTokenProvider {
     }
 
     public boolean validateToken(String token){
-        try {
+//        try {
             Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
             if (claims.getExpiration().before(new Date())) {
                 return false;
             }
             return true;
-        }catch (JwtException | IllegalArgumentException e){
-//            throw new JwtAuthenticationExeption("JWT Token is expired or invalid");
-            return false;
-        }
+//        }catch (JwtException | IllegalArgumentException e){
+//
+//        }
     }
 
     private List<String> getRoleNames(List<Role> roleList) {

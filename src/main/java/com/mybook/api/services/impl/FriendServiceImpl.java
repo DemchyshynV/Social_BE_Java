@@ -85,6 +85,7 @@ public class FriendServiceImpl implements FriendService {
                     !isFriend(candidate.getId(), currentUser)
                             && candidate.getId() != currentUser.getId()
                             && !friendRepository.myRequest(currentUser.getId()).contains(candidate.getId())
+                            && !friendRepository.friendsRequest(currentUser.getId()).contains(candidate.getId())
             ) {
                 result.add(builderFriendDTO(candidate.getProfile()));
             }

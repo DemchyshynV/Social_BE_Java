@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface FriendRepository extends JpaRepository<Friends, Long> {
-    @Query("select profile from Friends where friend like :id")
+    @Query("select profile_id from Friends where friend_id like :id")
     List<Long> friendsRequest(long id);
-    @Query("select friend from Friends where profile like :id")
+    @Query("select friend_id from Friends where profile_id like :id")
     List<Long> myRequest(long id);
 }

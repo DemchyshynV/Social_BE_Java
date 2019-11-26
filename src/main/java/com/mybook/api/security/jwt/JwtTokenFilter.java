@@ -1,5 +1,6 @@
 package com.mybook.api.security.jwt;
 
+import io.jsonwebtoken.JwtException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -24,6 +25,8 @@ public class JwtTokenFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        try {
+
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) servletRequest);
         if (token != null && jwtTokenProvider.validateToken(token)){
             Authentication authentication = jwtTokenProvider.getAuthentication(token);
@@ -31,6 +34,10 @@ public class JwtTokenFilter extends GenericFilterBean {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }
+        }catch (JwtException | IllegalArgumentException e){
+            ((HttpServletResponse)servletResponse).setStatus(401);
+        }
+
         filterChain.doFilter(servletRequest,servletResponse);
     }
 }

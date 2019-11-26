@@ -24,6 +24,7 @@ public class FriendsController {
     @GetMapping("/api/friends/findFriends")
     public List<FriendsDTO> findFriends() {
         return friendService.findFriends();
+
     }
 
     @GetMapping("/api/friends/myRequests")
@@ -56,8 +57,9 @@ public class FriendsController {
         friendService.del(id);
         return ResponseEntity.ok(true);
     }
+
     @GetMapping("/api/friends/friendsRequest")
-    public List<FriendsDTO> friendsRequest(){
+    public List<FriendsDTO> friendsRequest() {
         return friendService.friendsRequest();
     }
 }

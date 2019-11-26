@@ -21,8 +21,8 @@ public class Profile extends BaseEntity {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "friends",
-            joinColumns = @JoinColumn(name = "profile"),
-            inverseJoinColumns = @JoinColumn(name = "friend")
+            joinColumns = @JoinColumn(name = "profile_id"),
+            inverseJoinColumns = @JoinColumn(name = "friend_id")
     )
     private List<Profile> friends;
-}
+   }
